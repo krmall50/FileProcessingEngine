@@ -5,7 +5,11 @@ public class App {
         System.out.println("starting app...");
 
         FileScanner fc = new FileScanner();
-        List<String> res = fc.scanFile("input/text.txt");
+        List<String> res = fc.scanFile("input/text3.pdf");
+        if (res == null){
+            System.out.println("Something went wrong.");
+            return;
+        }
         res.stream().forEach(s -> System.out.println(s));
     }
 }

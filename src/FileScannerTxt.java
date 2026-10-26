@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Arrays;
 
 public class FileScanner {
-    public List<String> scanFile(String path){
+    public List<String> scanTxtFile(String path){
         String text = "";
         ArrayList<String> result;
 
