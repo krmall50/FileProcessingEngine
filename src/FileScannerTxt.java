@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-public class FileScanner {
-    public List<String> scanTxtFile(String path){
+public class FileScannerTxt implements Scannable {
+    public List<String> scanFile(String path){
+        if (!checkFormat(path)) return null;
+
         String text = "";
         ArrayList<String> result;
 
@@ -40,5 +42,19 @@ public class FileScanner {
             return true;
         }
         return false;
+    }
+
+    public boolean checkFormat(String path){
+        if(path.endsWith(".pdf")){
+            System.out.println("PDF format is not supported");
+            return false;
+        } else if(path.endsWith(".docx")){
+            System.out.println("PDF format is not supported");
+            return false;
+        } else if(!path.endsWith(".txt")){
+            System.out.println("Format is not supported");
+            return false;
+        }
+        return true;
     }
 }

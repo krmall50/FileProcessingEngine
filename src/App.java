@@ -4,10 +4,9 @@ public class App {
     public static void start() {
         System.out.println("starting app...");
 
-        FileScanner fc = new FileScanner();
-        List<String> res = fc.scanFile("input/text3.pdf");
+        FileScannerTxt fc = new FileScannerTxt();
+        List<String> res = fc.scanFile("input/text.txt");
         if (res == null){
-            System.out.println("Something went wrong.");
             return;
         }
         res.stream().forEach(s -> System.out.println(s));
