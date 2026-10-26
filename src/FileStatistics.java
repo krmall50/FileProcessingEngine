@@ -5,6 +5,12 @@ public class FileStatistics {
     private int numberOfWords;
     private int numberOfLines;
 
+    public FileStatistics(List<String> fileContents, int numberOfWords, int numberOfLines){
+        this.fileContents = fileContents;
+        this.numberOfWords = numberOfWords;
+        this.numberOfLines = numberOfLines;
+    }
+
     public void setFileContents(List<String> fileContents){
         this.fileContents = fileContents;
     }
