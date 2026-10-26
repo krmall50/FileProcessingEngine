@@ -1,14 +1,17 @@
-import java.util.List;
-
 public class App {
     public static void start() {
         System.out.println("starting app...");
 
         FileScannerTxt fc = new FileScannerTxt();
-        List<String> res = fc.scanFile("input/text.txt");
+        String res = fc.scanFile("input/text.txt");
         if (res == null){
             return;
         }
-        res.stream().forEach(s -> System.out.println(s));
+        FileProcesser process = new FileProcesser();
+        FileStatistics stats = process.processFile(res);
+        System.out.println("Lines: " + stats.getNumberOfLines());
+        System.out.println("Words: " + stats.getNumberOfWords());
+        // System.out.println("File: ");
+        // res.stream().forEach(System.out::println);
     }
 }
