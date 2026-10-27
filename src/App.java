@@ -11,6 +11,7 @@ public class App {
         FileStatistics stats = process.processFile(res);
         System.out.println("Lines: " + stats.getNumberOfLines());
         System.out.println("Words: " + stats.getNumberOfWords());
+        System.out.println("Unique words: " + stats.getNumberOfUniqueWords());
         // System.out.println("File: ");
         // res.stream().forEach(System.out::println);
     }

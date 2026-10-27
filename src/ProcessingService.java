@@ -5,16 +5,21 @@ import java.util.Arrays;
 public class ProcessingService {
     public int countWords(String file){
         if(file.equals("")) return 0;
-        
-        file = file.replaceAll("[^A-Za-z0-9']", " ");
-        file = file.replace("[\n]", " ");
 
-        List<String> words = new ArrayList<>(Arrays.asList(file.split(" "))).stream().filter(s -> !s.equals("")).toList();
-        System.out.println(words);
-        
+        List<String> words = getWords(file);        
         return words.size();
     }
 
+    public int countUniqueWords(String file){
+        if(countWords(file) == 0) return 0;
+        return (int) getWords(file).stream().distinct().count();
+
+    }
+    public List<String> getWords(String file) {
+        file = file.replaceAll("[^A-Za-z0-9']", " ").replace("[\n]", " ");
+        return new ArrayList<>(Arrays.asList(file.split(" "))).stream().filter(s -> !s.equals("")).toList();
+    }
+    
     public int countLines(String file){
         char[] charFile= file.toCharArray();
         int count = 0;
