@@ -1,7 +1,11 @@
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FileScannerTxt implements Scannable {
+
+    @Override 
     public String scanFile(String path){
         if (!checkFormat(path)) return null;
 
@@ -15,11 +19,16 @@ public class FileScannerTxt implements Scannable {
             System.out.println("Enter correct file path.");
             return null;
         }
-        //result = new ArrayList<>(Arrays.asList(text.split(" ")));
-        //return result.stream().filter(s -> !s.isBlank()).toList();
+
         return text;
     }
-
+    public List<String> scanFiles(List<String> paths){
+        List<String> files = new ArrayList<>();
+        for(String path: paths){
+            if(scanFile(path) != null) files.add(scanFile(path));
+        }
+        return files;
+    }
 
     public boolean checkFormat(String path){
         if(path.endsWith(".pdf")){
@@ -29,7 +38,7 @@ public class FileScannerTxt implements Scannable {
             System.out.println("DOCX format is not supported");
             return false;
         } else if(!path.endsWith(".txt")){
-            System.out.println("Format is not supported");
+            System.out.println("Format is not supported: " + path);
             return false;
         }
         return true;
