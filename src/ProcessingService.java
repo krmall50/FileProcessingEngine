@@ -63,6 +63,13 @@ public class ProcessingService {
         }
         return (int) words.stream().distinct().count();
     }
+    public int countWordFrequency(List<FileStatistics> files, String word){
+        List<String> words = new ArrayList<>();
+        for(FileStatistics file: files){
+            words.addAll(getWords(file.getFileContents()));
+        }
+        return (int) words.stream().filter((w) -> w.equals(word)).count();
+    }
     
     public List<String> getWords(String file) {
         file = file.replaceAll("[^A-Za-z0-9']", " ").replace("[\n]", " ").toLowerCase();
