@@ -12,14 +12,14 @@ public class ProcessingService {
         return words.size();
     }
 
-    public HashMap<String, Integer> mostFrequentWords(List<String> files){
+    public HashMap<String, Integer> mostFrequentWords(List<FileStatistics> files){
         List<String> done = new ArrayList<>();
         List<String> words = new ArrayList<>();
         HashMap<String, Integer> wordCounts = new HashMap<>();
         LinkedHashMap<String, Integer> result = new LinkedHashMap<>();
 
-        for(String file: files){
-            words.addAll(getWords(file));
+        for(FileStatistics file: files){
+            words.addAll(getWords(file.getFileContents()));
         }
         for (String word: words){
             if(done.contains(word)) continue;
@@ -56,10 +56,10 @@ public class ProcessingService {
         return (int) getWords(file).stream().distinct().count();
 
     }
-    public int countUniqueWords(List<String> files){
+    public int countUniqueWords(List<FileStatistics> files){
         List<String> words = new ArrayList<>();
-        for(String file: files){
-            words.addAll(getWords(file));
+        for(FileStatistics file: files){
+            words.addAll(getWords(file.getFileContents()));
         }
         return (int) words.stream().distinct().count();
     }

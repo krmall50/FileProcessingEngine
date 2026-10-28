@@ -6,7 +6,7 @@ import java.util.List;
 public class FileScannerTxt implements Scannable {
 
     @Override 
-    public String scanFile(String path){
+    public FileStatistics scanFile(String path){
         if (!checkFormat(path)) return null;
 
         String text = "";
@@ -19,11 +19,11 @@ public class FileScannerTxt implements Scannable {
             System.out.println("Enter correct file path.");
             return null;
         }
-
-        return text;
+        FileStatistics stat = new FileStatistics(path, text, 0, 0, 0);
+        return stat;
     }
-    public List<String> scanFiles(List<String> paths){
-        List<String> files = new ArrayList<>();
+    public List<FileStatistics> scanFiles(List<String> paths){
+        List<FileStatistics> files = new ArrayList<>();
         for(String path: paths){
             if(scanFile(path) != null) files.add(scanFile(path));
         }

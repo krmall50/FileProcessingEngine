@@ -1,3 +1,3 @@
 interface Scannable {
-    String scanFile(String path);
+    FileStatistics scanFile(String path);
 }

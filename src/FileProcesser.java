@@ -5,12 +5,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class FileProcesser {
-    public synchronized FileStatistics processFile(String file){
+    public synchronized FileStatistics processFile(FileStatistics file){
         ProcessingService process = new ProcessingService();
-        return new FileStatistics(file, process.countWords(file), process.countLines(file), process.countUniqueWords(file));
+        file.setNumberOfWords(process.countWords(file.getFileContents()));
+        file.setNumberOfUniqueWords(process.countUniqueWords(file.getFileContents()));
+        file.setNumberOfLines(process.countLines(file.getFileContents()));
+        return file;
+        //return new FileStatistics(file, process.countWords(file.getFileContents()), process.countLines(file.getFileContents()), process.countUniqueWords(file.getFileContents()));
     }
 
-    public List<FileStatistics> processFiles(List<String> files){
+    public List<FileStatistics> processFiles(List<FileStatistics> files){
         ExecutorService executor = Executors.newFixedThreadPool(2);
         List<FileStatistics> stats = new ArrayList<>();
 
@@ -31,9 +35,6 @@ public class FileProcesser {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-        System.out.println("size: "+stats.size());
-        System.out.println("stats: "+stats);
 
         executor.shutdown();
         return stats;

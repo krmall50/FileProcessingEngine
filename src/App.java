@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class App {
@@ -7,15 +8,15 @@ public class App {
         FileScannerTxt fc = new FileScannerTxt();
         FileProcesser process = new FileProcesser();
         ProcessingService ps = new ProcessingService();
+        ReportGenerator rg = new ReportGenerator();
 
         List<String> filesNames = getFileNames("input");
-        List<String> files = fc.scanFiles(filesNames);
-        System.out.println(ps.mostFrequentWords(files));
-        System.out.println(ps.countUniqueWords(files));
-        
-        //List<FileStatistics> stats = process.processFiles(files);
+        List<FileStatistics> files = fc.scanFiles(filesNames);
 
-        
+        List<FileStatistics> stats = process.processFiles(files);
+        HashMap<String, Integer> mfw = ps.mostFrequentWords(files);
+        int globalUniqueWords = ps.countUniqueWords(files);
+        rg.generateReport(stats, mfw, globalUniqueWords);       
         
     }
     public static List<String> getFileNames(String path){
