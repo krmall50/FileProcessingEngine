@@ -11,6 +11,7 @@ public class App {
         List<String> filesNames = getFileNames("input");
         List<String> files = fc.scanFiles(filesNames);
         System.out.println(ps.mostFrequentWords(files));
+        System.out.println(ps.countUniqueWords(files));
         
         //List<FileStatistics> stats = process.processFiles(files);
 

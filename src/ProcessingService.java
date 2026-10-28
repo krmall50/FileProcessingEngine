@@ -56,6 +56,14 @@ public class ProcessingService {
         return (int) getWords(file).stream().distinct().count();
 
     }
+    public int countUniqueWords(List<String> files){
+        List<String> words = new ArrayList<>();
+        for(String file: files){
+            words.addAll(getWords(file));
+        }
+        return (int) words.stream().distinct().count();
+    }
+    
     public List<String> getWords(String file) {
         file = file.replaceAll("[^A-Za-z0-9']", " ").replace("[\n]", " ").toLowerCase();
         return new ArrayList<>(Arrays.asList(file.split(" "))).stream().filter(s -> !s.equals("")).toList();
