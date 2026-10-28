@@ -1,4 +1,4 @@
-public class FileStatistics {
+public class FileStatistics implements Comparable<FileStatistics> {
     private String fileContents;
     private int numberOfWords;
     private int numberOfLines;
@@ -34,5 +34,10 @@ public class FileStatistics {
     }
     public int getNumberOfLines(){
         return numberOfLines;
+    }
+
+    @Override 
+    public int compareTo(FileStatistics stats){
+        return getNumberOfWords() - stats.getNumberOfWords();
     }
 }
