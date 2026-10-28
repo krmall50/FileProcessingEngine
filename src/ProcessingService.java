@@ -11,6 +11,13 @@ public class ProcessingService {
         List<String> words = getWords(file);        
         return words.size();
     }
+    public int countWords(List<FileStatistics> files){
+        int count = 0;
+        for(FileStatistics file: files){
+            count += countWords(file.getFileContents());
+        }
+        return count;
+    }
 
     public HashMap<String, Integer> mostFrequentWords(List<FileStatistics> files){
         List<String> done = new ArrayList<>();
@@ -29,12 +36,13 @@ public class ProcessingService {
 
             wordCounts.put(word, count);
         }
-        for(int i = 0; i<4; i++){
+        for(int i = 0; i < 4; i++){
             HashMap<String, Integer> max = maxCount(wordCounts);
             result.putAll(max);
             wordCounts.remove(max.keySet().toArray()[0]);
         }
 
+        wordCounts.clear();
         return result;
     }
 
@@ -84,9 +92,15 @@ public class ProcessingService {
                 count++;
             }
         }
-
         if(countWords(file) == 1 && count == 0) return 1;
         if(countWords(file) == 0 && count == 0) return 0;
         return count + 1;
+    }
+    public int countLines(List<FileStatistics> files){
+        int count = 0;
+        for(FileStatistics file: files){
+            count += countLines(file.getFileContents());
+        }
+        return count;
     }
 }

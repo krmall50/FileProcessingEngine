@@ -19,6 +19,7 @@ public class FileScannerTxt implements Scannable {
             System.out.println("Enter correct file path.");
             return null;
         }
+        
         FileStatistics stat = new FileStatistics(path, text, 0, 0, 0);
         return stat;
     }

@@ -11,7 +11,6 @@ public class FileProcesser {
         file.setNumberOfUniqueWords(process.countUniqueWords(file.getFileContents()));
         file.setNumberOfLines(process.countLines(file.getFileContents()));
         return file;
-        //return new FileStatistics(file, process.countWords(file.getFileContents()), process.countLines(file.getFileContents()), process.countUniqueWords(file.getFileContents()));
     }
 
     public List<FileStatistics> processFiles(List<FileStatistics> files){

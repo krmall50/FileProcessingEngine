@@ -15,8 +15,12 @@ public class App {
 
         List<FileStatistics> stats = process.processFiles(files);
         HashMap<String, Integer> mfw = ps.mostFrequentWords(files);
-        int globalUniqueWords = ps.countUniqueWords(files);
-        rg.generateReport(stats, mfw, globalUniqueWords);       
+        Integer globalUniqueWords = ps.countUniqueWords(files);
+        Integer globalWords = ps.countWords(files);
+        Integer globalLines = ps.countLines(files);
+
+        Integer fileCount = filesNames.size();
+        rg.generateReport(stats, mfw, globalUniqueWords, globalWords, globalLines, fileCount);       
         
     }
     public static List<String> getFileNames(String path){
