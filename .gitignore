@@ -1,5 +1,8 @@
 input/*
 output/*
+.vscode/
+/
+bin/
 
 !input/.gitkeep
 !output/.gitkeep
