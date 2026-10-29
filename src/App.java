@@ -9,8 +9,15 @@ public class App {
         FileProcesser process = new FileProcesser();
         ProcessingService ps = new ProcessingService();
         ReportGenerator rg = new ReportGenerator();
+        List<String> filesNames = new ArrayList<>();
 
-        List<String> filesNames = getFileNames("input");
+        try {
+            filesNames = getFileNames("input");
+        } catch (NullPointerException e) {
+            System.out.println("Couldn't find directory input\\");
+            return;
+        }
+  
         List<FileStatistics> files = fc.scanFiles(filesNames);
 
         if(files.size() == 0) {
