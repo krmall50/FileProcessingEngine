@@ -13,6 +13,11 @@ public class App {
         List<String> filesNames = getFileNames("input");
         List<FileStatistics> files = fc.scanFiles(filesNames);
 
+        if(files.size() == 0) {
+            System.out.println("No valid files found in directory input\\");
+            return;
+        }
+
         List<FileStatistics> stats = process.processFiles(files);
         HashMap<String, Integer> mfw = ps.mostFrequentWords(files);
         Integer globalUniqueWords = ps.countUniqueWords(files);
