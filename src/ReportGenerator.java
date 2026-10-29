@@ -10,7 +10,7 @@ import java.util.List;
 public class ReportGenerator {
     public void generateReport(List<FileStatistics> stats, HashMap<String, Integer> mfw, Integer globalUniqueWords, Integer globalWords, Integer globalLines, Integer fileCount){
         LocalDateTime dateTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd_hh-mm-ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_hh-mm-ss");
         String formattedDate = dateTime.format(formatter);
         String filename = "";
         final Integer failedCount = fileCount - (Integer)stats.size();
