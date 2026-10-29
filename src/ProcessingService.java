@@ -36,11 +36,21 @@ public class ProcessingService {
 
             wordCounts.put(word, count);
         }
-        for(int i = 0; i < 4; i++){
-            HashMap<String, Integer> max = maxCount(wordCounts);
-            result.putAll(max);
-            wordCounts.remove(max.keySet().toArray()[0]);
+        if(wordCounts.size() >= 4){
+            for(int i = 0; i < 4; i++){
+                HashMap<String, Integer> max = maxCount(wordCounts);
+                result.putAll(max);
+                wordCounts.remove(max.keySet().toArray()[0]);
+            }
+        } else{
+            int size = wordCounts.size();
+            for(int i = 0; i < size; i++){
+                HashMap<String, Integer> max = maxCount(wordCounts);
+                result.putAll(max);
+                wordCounts.remove(max.keySet().toArray()[0]);
+            }
         }
+        
 
         wordCounts.clear();
         return result;

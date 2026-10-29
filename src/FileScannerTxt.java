@@ -26,7 +26,8 @@ public class FileScannerTxt implements Scannable {
     public List<FileStatistics> scanFiles(List<String> paths){
         List<FileStatistics> files = new ArrayList<>();
         for(String path: paths){
-            if(scanFile(path) != null) files.add(scanFile(path));
+            FileStatistics file = scanFile(path);
+            if(file != null) files.add(file);
         }
         return files;
     }
