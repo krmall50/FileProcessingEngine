@@ -39,14 +39,16 @@ public class FileProcesser {
             stats.addAll(future.get());
             stats.addAll(future1.get());
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             System.out.println(e.getMessage());
-            executor.shutdown();
         } catch (ExecutionException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+        } finally{
             executor.shutdown();
         }
 
         executor.shutdown();
         return stats;
     }
+
 }
