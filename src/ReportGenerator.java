@@ -9,6 +9,11 @@ import java.util.List;
 
 public class ReportGenerator {
     public void generateReport(List<FileStatistics> stats, HashMap<String, Integer> mfw, Integer globalUniqueWords, Integer globalWords, Integer globalLines, Integer fileCount){
+        if(stats.size() == 0){
+            System.out.println("No valid files found.");
+            return;
+        }
+
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd_hh-mm-ss");
         String formattedDate = dateTime.format(formatter);
